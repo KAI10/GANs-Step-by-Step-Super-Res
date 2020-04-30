@@ -88,12 +88,13 @@ class Logger:
         plt.imshow(np.moveaxis(grid.numpy(), 0, -1))
         plt.axis('off')
         self._save_images(fig, epoch, n_batch)
+        plt.savefig('generated_image.pdf')  
         plt.close()
 
     def _save_images(self, fig, epoch, n_batch, comment=''):
         out_dir = './data/images/{}'.format(self.data_subdir)
         Logger._make_dir(out_dir)
-        fig.savefig('{}/{}_epoch_{}_batch_{}.png'.format(out_dir,
+        fig.savefig('{}/{}_epoch_{}_batch_{}.pdf'.format(out_dir,
                                                          comment, epoch, n_batch))
 
     def display_status(self, epoch, num_epochs, n_batch, num_batches, d_error, g_error, d_pred_real, d_pred_fake):
